@@ -2,15 +2,14 @@
   "name": "Milestone4",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && npm run serve",
-    "serve": "node dist/app.js",
-    "build-ts": "tsc",
-    "dev:ts": "nodemon",
+    "serve": "node dist/index.js",
+    "build": "tsc",
     "lint": "eslint . --ext .ts",
-    "dev": "nodemon src/app.ts"
+    "dev": "nodemon src/index.ts"
   },
   "repository": {
     "type": "git",
