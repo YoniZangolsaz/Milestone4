@@ -49,7 +49,7 @@ export const deleteClass = async (req: Request, res: Response) => {
   res.send(answer);
 };
 
-// Put http://localhost:3010/class/name/:classId
+// Patch http://localhost:3010/class/name/:classId
 export const putClassName = async (req: Request, res: Response) => {
   const classID = req.params.classId;
   const className = req.body.className;
