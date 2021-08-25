@@ -10,7 +10,7 @@ export const trainerSchema: Schema = new Schema({
   },
   fullName: { required: true, type: String },
   age: { required: true, type: Number },
-  classIDs: { required: true, type: [String] },
+  classIDs: [{ required: true, type: String, ref: 'class' }],
 }, { versionKey: false });
 
 const trainerModel = mongoose.model<trainerInterface & Document>(config.trainerCollectionName, trainerSchema, config.trainerCollectionName);

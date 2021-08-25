@@ -9,7 +9,12 @@ import server from './server';
 startFunction();
 
 export async function startFunction() {
-  mongoose.connect(config.mongoDbPath, { useUnifiedTopology: true, useNewUrlParser: true })
+  mongoose
+    .connect(config.mongoDbPath, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+      useFindAndModify: true,
+    })
     .catch((err) => {
       console.log("Coudn't connect to MongoDB....");
       process.exit();

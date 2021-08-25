@@ -14,14 +14,22 @@ export const getAllClass = async () => {
   return classModel.find();
 };
 
-export const getClassByclassID = async (classID: string): Promise<classInterface> => {
-  return classModel.findOne({ classID });
+export const getClassByClassID = async (classID: string): Promise<classInterface> => {
+  return classModel.findOne({ classID }).lean();
 };
 
 export const deleteClass = async (classID: string) => {
-  return classModel.remove({ classID });
+  return classModel.findOneAndDelete({ classID });
 };
 
 export const updateClassName = async (classID: string, className: string) => {
   return classModel.findOneAndUpdate({ classID }, { className: className });
+};
+
+export const updateStartTime = async (classID: string, startTime: number) => {
+  return classModel.findOneAndUpdate({ classID }, { startTime: startTime });
+};
+
+export const updateEndTime = async (classID: string, endTime: number) => {
+  return classModel.findOneAndUpdate({ classID }, { endTime: endTime });
 };
