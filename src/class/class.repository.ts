@@ -14,7 +14,9 @@ export const getAllClass = async () => {
   return classModel.find();
 };
 
-export const getClassByClassID = async (classID: string): Promise<classInterface> => {
+export const getClassByClassID = async (
+  classID: string
+): Promise<classInterface> => {
   return classModel.findOne({ classID }).lean();
 };
 

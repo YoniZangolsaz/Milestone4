@@ -1,3 +1,5 @@
+/* eslint-disable no-unreachable */
+/* eslint-disable no-return-await */
 /* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable @typescript-eslint/return-await */
 /* eslint-disable import/prefer-default-export */
@@ -14,33 +16,37 @@ export const addTrainer = (dacument: trainerInterface) => {
 };
 
 export const getAllTrainer = async () => {
-  return trainerModel.find();
+  return await trainerModel.find();
 };
 
 export const getTrainerByUserID = async (
   userID: string
 ): Promise<trainerInterface> => {
-  return trainerModel.findOne({ userID });
+  return await trainerModel.findOne({ userID });
 };
 
 export const deleteTrainer = async (userID: string) => {
-  return trainerModel.remove({ userID });
+  return await trainerModel.remove({ userID });
 };
 
 export const updateAge = async (userID: string, age: number) => {
-  return trainerModel.findOneAndUpdate({ userID }, { age: age });
+  return await trainerModel.findOneAndUpdate({ userID }, { age: age });
 };
 
 export const updateClassIDs = async (userID: string, classID: string) => {
-  console.log(classID);
   return await trainerModel.findOneAndUpdate(
     { userID },
     { $push: { classIDs: classID } }
   );
 };
 
-export const deleteClassFromTrainer = (userID: string, classID: string) => {
-  return trainerModel.findOneAndUpdate(
+export const deleteClassFromTrainer = async (
+  userID: string,
+  classID: string
+) => {
+  console.log(userID);
+  console.log(classID);
+  return await trainerModel.findOneAndUpdate(
     { userID },
     { $pull: { classIDs: classID } }
   );
