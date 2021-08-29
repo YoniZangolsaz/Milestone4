@@ -58,7 +58,7 @@ export const deleteClass = async (req: Request, res: Response) => {
   try {
     const classID: string = req.params.classId;
 
-    const answer: string = await classManager.deleteClass(classID);
+    const answer: classInterface = await classManager.deleteClass(classID);
     res.send(answer);
   } catch (err) {
     res.status(500).json({ message: err.message });

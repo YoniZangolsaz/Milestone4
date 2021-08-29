@@ -31,8 +31,10 @@ export const deleteClass = async (classID: string) => {
   for (let i = 0; i < trainers.length; i++) {
     await trainerRepository.deleteClassFromTrainer(trainers[i].userID, classID);
   }
-  await classRepository.deleteClass(classID);
-  return `delete ${classID} successfully`;
+  const deleteClass: classInterface = await classRepository.deleteClass(
+    classID
+  );
+  return deleteClass;
 };
 
 export const updateClassName = async (classID: string, className: string) => {
