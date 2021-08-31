@@ -4,13 +4,13 @@ import * as trainerRepository from '../trainer/trainer.repository';
 import trainerInterface from '../trainer/trainer.interface';
 
 export const addClass = async (dacument: classInterface) => {
-  const addClass = await classRepository.addClass(dacument);
-  return addClass;
+  const newClass = await classRepository.addClass(dacument);
+  return newClass;
 };
 
 export const getAllClass = async () => {
-  const getAllClass: object = await classRepository.getAllClass();
-  return getAllClass;
+  const getClass: object = await classRepository.getAllClass();
+  return getClass;
 };
 
 export const getClassByClassID = async (classID: string) => {
@@ -27,34 +27,34 @@ export const deleteClass = async (classID: string) => {
   for (let i = 0; i < trainers.length; i += 1) {
     await trainerRepository.deleteClassFromTrainer(trainers[i].userID, classID);
   }
-  const deleteClass: classInterface = await classRepository.deleteClass(
+  const classDelete: classInterface = await classRepository.deleteClass(
     classID
   );
-  return deleteClass;
+  return classDelete;
 };
 
 export const updateClassName = async (classID: string, className: string) => {
-  const updateClassName: classInterface = await classRepository.updateClassName(
+  const updateNameClass: classInterface = await classRepository.updateClassName(
     classID,
     className
   );
-  return updateClassName;
+  return updateNameClass;
 };
 
 export const updateStartTime = async (classID: string, startTime: number) => {
-  const updateStartTime: classInterface = await classRepository.updateStartTime(
+  const startTimeUpdate: classInterface = await classRepository.updateStartTime(
     classID,
     startTime
   );
-  return updateStartTime;
+  return startTimeUpdate;
 };
 
 export const updateEndTime = async (classID: string, endTime: number) => {
-  const updateEndTime: classInterface = await classRepository.updateEndTime(
+  const endTimeUpdate: classInterface = await classRepository.updateEndTime(
     classID,
     endTime
   );
-  return updateEndTime;
+  return endTimeUpdate;
 };
 
 export const getClassWithTrainers = async (classID: string) => {

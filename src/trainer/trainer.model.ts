@@ -1,4 +1,4 @@
-import mongoose, { Model, Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
 import * as config from '../config';
 import trainerInterface from './trainer.interface';
 
