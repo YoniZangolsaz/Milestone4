@@ -1,20 +1,15 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-await-in-loop */
-/* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import classInterface from './class.interface';
 import * as classRepository from './class.repository';
 import * as trainerRepository from '../trainer/trainer.repository';
 import trainerInterface from '../trainer/trainer.interface';
 
 export const addClass = async (dacument: classInterface) => {
-  const addClass: any = await classRepository.addClass(dacument);
+  const addClass = await classRepository.addClass(dacument);
   return addClass;
 };
 
 export const getAllClass = async () => {
-  const getAllClass: any = await classRepository.getAllClass();
+  const getAllClass: object = await classRepository.getAllClass();
   return getAllClass;
 };
 
@@ -26,9 +21,10 @@ export const getClassByClassID = async (classID: string) => {
 };
 
 export const deleteClass = async (classID: string) => {
-  const trainers: any = await trainerRepository.getTrainerInClass(classID);
+  const trainers: trainerInterface[] =
+    await trainerRepository.getTrainerInClass(classID);
 
-  for (let i = 0; i < trainers.length; i++) {
+  for (let i = 0; i < trainers.length; i += 1) {
     await trainerRepository.deleteClassFromTrainer(trainers[i].userID, classID);
   }
   const deleteClass: classInterface = await classRepository.deleteClass(
@@ -54,7 +50,10 @@ export const updateStartTime = async (classID: string, startTime: number) => {
 };
 
 export const updateEndTime = async (classID: string, endTime: number) => {
-  const updateEndTime = await classRepository.updateEndTime(classID, endTime);
+  const updateEndTime: classInterface = await classRepository.updateEndTime(
+    classID,
+    endTime
+  );
   return updateEndTime;
 };
 

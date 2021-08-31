@@ -1,9 +1,4 @@
-/* eslint-disable prefer-destructuring */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable radix */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import express, { Request, Response } from 'express';
+import { Request, Response } from 'express';
 import classInterface from './class.interface';
 import * as classManager from './class.manager';
 
@@ -12,8 +7,8 @@ export const postClass = async (req: Request, res: Response) => {
   try {
     const classIDQuery: string = req.body.classID!.toString();
     const classNameQuery: string = req.body.className!.toString();
-    const startTimeQuery: number = parseInt(req.body.startTime as string);
-    const endTimeQuery: number = parseInt(req.body.endTime as string);
+    const startTimeQuery: number = parseInt(req.body.startTime as string, 10);
+    const endTimeQuery: number = parseInt(req.body.endTime as string, 10);
 
     const dacument: classInterface = {
       classID: classIDQuery,
@@ -22,7 +17,7 @@ export const postClass = async (req: Request, res: Response) => {
       endTime: endTimeQuery,
     };
 
-    const answer: classInterface = await classManager.addClass(dacument);
+    const answer = await classManager.addClass(dacument);
     res.send(answer);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -46,7 +41,7 @@ export const getClassByClassID = async (req: Request, res: Response) => {
 // GET http://localhost:3010/class/
 export const getAllClass = async (req: Request, res: Response) => {
   try {
-    const answer: classInterface = await classManager.getAllClass();
+    const answer: object = await classManager.getAllClass();
     res.send(answer);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -69,7 +64,7 @@ export const deleteClass = async (req: Request, res: Response) => {
 export const updateClassName = async (req: Request, res: Response) => {
   try {
     const classID: string = req.params.classId;
-    const className: string = req.body.className;
+    const { className } = req.body;
 
     const answer: classInterface = await classManager.updateClassName(
       classID,
@@ -85,7 +80,7 @@ export const updateClassName = async (req: Request, res: Response) => {
 export const updateStartTime = async (req: Request, res: Response) => {
   try {
     const classID: string = req.params.classId;
-    const startTime: number = req.body.startTime;
+    const { startTime } = req.body;
 
     const answer: classInterface = await classManager.updateStartTime(
       classID,
@@ -101,7 +96,7 @@ export const updateStartTime = async (req: Request, res: Response) => {
 export const updateEndTime = async (req: Request, res: Response) => {
   try {
     const classID: string = req.params.classId;
-    const endTime: number = req.body.endTime;
+    const { endTime } = req.body;
 
     const answer: classInterface = await classManager.updateEndTime(
       classID,

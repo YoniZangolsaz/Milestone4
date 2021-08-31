@@ -1,20 +1,16 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable no-await-in-loop */
-/* eslint-disable import/no-cycle */
 import trainerInterface from './trainer.interface';
 import * as trainerRepository from './trainer.repository';
 import { getClassByClassID } from '../class/class.manager';
 import classInterface from '../class/class.interface';
 
 export const addTrainer = async (dacument: trainerInterface) => {
-  const addTrainer: any = await trainerRepository.addTrainer(dacument);
-  return addTrainer;
+  const newTrainer = await trainerRepository.addTrainer(dacument);
+  return newTrainer;
 };
 
 export const getAllTrainer = async () => {
-  const getAllTrainer: any = await trainerRepository.getAllTrainer();
-  return getAllTrainer;
+  const getTrainer: object = await trainerRepository.getAllTrainer();
+  return getTrainer;
 };
 
 export const getTrainerByUserID = async (userID: string) => {
@@ -25,18 +21,18 @@ export const getTrainerByUserID = async (userID: string) => {
 };
 
 export const deleteTrainer = async (userID: string) => {
-  const deleteTrainer: trainerInterface = await trainerRepository.deleteTrainer(
+  const trainerDelet: trainerInterface = await trainerRepository.deleteTrainer(
     userID
   );
-  return deleteTrainer;
+  return trainerDelet;
 };
 
 export const updateAge = async (userID: string, age: number) => {
-  const updateAge: trainerInterface = await trainerRepository.updateAge(
+  const ageUpdate: trainerInterface = await trainerRepository.updateAge(
     userID,
     age
   );
-  return updateAge;
+  return ageUpdate;
 };
 
 export const updateClassIDs = async (userID: string, classID: string) => {
@@ -56,7 +52,7 @@ export const updateClassIDs = async (userID: string, classID: string) => {
     if ((await trainer.age) < 20 || trainer.age > 40) {
       return 'The age of trainer must be between 20 - 40';
     }
-    for (let i = 0; i < trainer.classIDs.length; i++) {
+    for (let i = 0; i < trainer.classIDs.length; i += 1) {
       const classListInTrainer: classInterface = await getClassByClassID(
         trainer.classIDs[i]
       );
@@ -80,9 +76,7 @@ export const deleteClassFromTrainer = async (
   userID: string,
   classID: string
 ) => {
-  const deleteClassFromTrainer = await trainerRepository.deleteClassFromTrainer(
-    userID,
-    classID
-  );
-  return deleteClassFromTrainer;
+  const deleteClassFromTheTrainer: trainerInterface =
+    await trainerRepository.deleteClassFromTrainer(userID, classID);
+  return deleteClassFromTheTrainer;
 };

@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable import/order */
-import * as config from './config';
 import express, { Application } from 'express';
+import * as config from './config';
 import routers from './router';
 
 const PORT = config.serverPort;
