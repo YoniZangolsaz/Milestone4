@@ -10,7 +10,7 @@ export const getAllTrainer = async () => TrainerModel.find();
 
 export const getTrainerByUserID = async (
   userID: string
-): Promise<trainerInterface> => TrainerModel.findOne({ userID });
+): Promise<trainerInterface> => TrainerModel.findOne({ userID }).lean();
 
 export const deleteTrainer = async (userID: string) =>
   TrainerModel.remove({ userID });
@@ -21,17 +21,8 @@ export const updateAge = async (userID: string, age: number) =>
 export const updateClassIDs = async (userID: string, classID: string) =>
   TrainerModel.findOneAndUpdate({ userID }, { $push: { classIDs: classID } });
 
-export const deleteClassFromTrainer = async (
-  userID: string,
-  classID: string
-) => {
-  console.log(userID);
-  console.log(classID);
-  return TrainerModel.findOneAndUpdate(
-    { userID },
-    { $pull: { classIDs: classID } }
-  );
-};
+export const deleteClassFromTrainer = async (userID: string, classID: string) =>
+  TrainerModel.findOneAndUpdate({ userID }, { $pull: { classIDs: classID } });
 
 export const getTrainerInClass = async (classID: string) =>
   TrainerModel.find({ classIDs: classID }).lean();
