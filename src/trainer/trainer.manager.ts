@@ -60,7 +60,7 @@ export const updateClassIDs = async (userID: string, classID: string) => {
         classQuery.endTime <= classListInTrainer.startTime ||
         classQuery.startTime >= classListInTrainer.endTime
       ) {
-        trainerRepository.updateClassIDs(userID, classID);
+        await trainerRepository.updateClassIDs(userID, classID);
         msg = ` ${classID} update class successfully`;
       } else {
         msg = 'The trainer enrolled in another class during these hours';

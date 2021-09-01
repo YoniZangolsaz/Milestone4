@@ -1,0 +1,27 @@
+version: '3'
+services:
+
+  service1:
+    image: service-1
+    ports:
+      - 3020:3020
+    environment: 
+      path: 127.0.0.1:85
+
+
+
+  app:
+    container_name: server-side-task
+    restart: always
+    build: .
+    ports:
+      - '85:3010'
+    links:
+      - mongo
+  
+  
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'
