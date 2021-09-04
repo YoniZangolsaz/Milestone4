@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  service1:
+    image: service-1:0.1
+    restart: always
+    ports:
+      - 3020:3020
+    environment:
+      PORT: 3020
+      app: 3010
+
+  app:
+    restart: always
+    build: .
+    ports:
+      - '3010:3010'
+    links:
+      - mongo
+    environment:
+      MONGOIP: mongo
+      MONGOPORT: 27017
+      PORT: 3010
+  
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'
